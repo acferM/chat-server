@@ -9,3 +9,35 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  messages Message[]
+  chats    Chat[]
+
+  @@map("users")
+}
+
+model Chat {
+  id           String    @id @default(uuid())
+  participants User[]
+  messages     Message[]
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  text      String
+  from      User     @relation(fields: [userId], references: [id])
+  to        Chat     @relation(fields: [chatId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId String
+  chatId String
+  @@map("messages")
+}
