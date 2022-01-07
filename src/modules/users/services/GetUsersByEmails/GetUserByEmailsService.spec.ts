@@ -34,14 +34,14 @@ describe('Get Users by Emails Service', () => {
   });
 
   it('should not to get users without email specified', async () => {
-    fakeUsersRepository.create({
+    await fakeUsersRepository.create({
       name: 'John Doe',
       email: 'john@doe.com',
       avatar_url: 'fake_avatar',
       socket_id: 'fake_socket_id',
     });
 
-    fakeUsersRepository.create({
+    await fakeUsersRepository.create({
       name: 'John Doe 2',
       email: 'john2@doe.com',
       avatar_url: 'fake_avatar',

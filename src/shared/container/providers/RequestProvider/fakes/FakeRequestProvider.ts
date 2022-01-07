@@ -5,9 +5,7 @@ class FakeRequestProvider implements IRequestProvider {
     const users = JSON.parse(url);
 
     return {
-      data: {
-        users,
-      },
+      data: users,
     };
   }
 }

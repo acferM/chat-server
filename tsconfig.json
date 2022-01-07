@@ -7,16 +7,16 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "module": "commonjs",
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "paths": {
-      "@modules": [
-        "modules"
+      "@modules/*": [
+        "modules/*"
       ],
-      "@config": [
-        "config"
+      "@config/*": [
+        "config/*"
       ],
-      "@shared": [
-        "shared"
+      "@shared/*": [
+        "shared/*"
       ]
     },
     "resolveJsonModule": true,
