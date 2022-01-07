@@ -1,3 +1,7 @@
+type RequestResponse = {
+  data: any;
+};
+
 export interface IRequestProvider {
-  get(url: string): Promise<any>;
+  get(url: string): Promise<RequestResponse>;
 }
