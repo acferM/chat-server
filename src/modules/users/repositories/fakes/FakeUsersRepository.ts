@@ -8,6 +8,12 @@ import { IUsersRepository } from '../IUsersRepository';
 class FakeUsersRepository implements IUsersRepository {
   private users: User[] = [];
 
+  public async findBySocketId(socketId: string): Promise<User | undefined> {
+    const user = this.users.find(user => user.socket_id === socketId);
+
+    return user;
+  }
+
   public async findByEmail(email: string): Promise<User | undefined> {
     const user = this.users.find(user => user.email === email);
 

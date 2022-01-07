@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for Chat/services/CreateChat/index.ts</title>
+    <title>Code coverage report for messages/services/CreateMessage/index.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,13 +19,13 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">Chat/services/CreateChat</a> index.ts</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">messages/services/CreateMessage</a> index.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>55/55</span>
+                <span class='fraction'>51/51</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>55/55</span>
+                <span class='fraction'>51/51</span>
             </div>
         
             
@@ -114,11 +114,7 @@
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
 <a name='L51'></a><a href='#L51'>51</a>
-<a name='L52'></a><a href='#L52'>52</a>
-<a name='L53'></a><a href='#L53'>53</a>
-<a name='L54'></a><a href='#L54'>54</a>
-<a name='L55'></a><a href='#L55'>55</a>
-<a name='L56'></a><a href='#L56'>56</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L52'></a><a href='#L52'>52</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -133,19 +129,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">3x</span>
@@ -157,77 +140,82 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
-import { Chat } from '@prisma/client';
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { IChatsRepositories } from '@modules/Chat/repositories/IChatsRepositories';
+import { IMessagesRepository } from '@modules/messages/repositories/IMessagesRepository';
+import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
+import { Message } from '@prisma/client';
 import { inject, injectable } from 'tsyringe';
 &nbsp;
-import { IRequestProvider } from '@shared/container/providers/RequestProvider/models/IRequestProvider';
-&nbsp;
-import { IChatsRepositories } from '../../repositories/IChatsRepositories';
-&nbsp;
-type GitResponse = {
-  email: string;
-};
+import { AppError } from '@shared/errors/AppError';
 &nbsp;
 interface IRequest {
-  emailsUrl: string;
+  text: string;
+  socket_id: string;
+  toId: string;
 }
 &nbsp;
 @injectable()
-class CreateChatService {
+class CreateMessageService {
   constructor(
-    @inject('ChatsRepositories')
-    private chatsRepository: IChatsRepositories,
+    @inject('MessagesRepository')
+    private messagesRepository: IMessagesRepository,
 &nbsp;
-    @inject('UsersRepositories')
+    @inject('UsersRepository')
     private usersRepository: IUsersRepository,
 &nbsp;
-    @inject('RequestProvider')
-    private requestProvider: IRequestProvider,
+    @inject('ChatRepository')
+    private chatRepository: IChatsRepositories,
   ) {}
 &nbsp;
-  async execute({ emailsUrl }: IRequest): Promise&lt;Chat&gt; {
-    const { data: gitUsers } = await this.requestProvider.get&lt;GitResponse[]&gt;(
-      emailsUrl,
-    );
+  async execute({ text, socket_id, toId }: IRequest): Promise&lt;Message&gt; {
+    const user = await this.usersRepository.findBySocketId(socket_id);
 &nbsp;
-    const usersEmails = gitUsers.map(gitUser =&gt; gitUser.email);
-&nbsp;
-    const users = await this.usersRepository.findManyByEmails(usersEmails);
-&nbsp;
-    const usersIds = users.map(user =&gt; user.id);
-&nbsp;
-    const chatRoomExists = await this.chatsRepository.findByUsers(usersIds);
-&nbsp;
-    if (chatRoomExists) {
-      return chatRoomExists;
+    if (!user) {
+      throw new AppError('User not found', 404);
     }
 &nbsp;
-    const chat = await this.chatsRepository.create({
-      users,
+    const chatExists = await this.chatRepository.findById(toId);
+&nbsp;
+    if (!chatExists) {
+      throw new AppError('Chat not found', 404);
+    }
+&nbsp;
+    const message = await this.messagesRepository.create({
+      text,
+      fromId: user.id,
+      toId,
     });
 &nbsp;
-    return chat;
+    return message;
   }
 }
 &nbsp;
-export { CreateChatService };
+export { CreateMessageService };
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
