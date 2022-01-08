@@ -6,6 +6,14 @@ import { inject, injectable } from 'tsyringe';
 
 import { AppError } from '@shared/errors/AppError';
 
+type MessagesWithRelations = Message & {
+  to: {
+    participants: {
+      socket_id: string;
+    }[];
+  };
+};
+
 interface IRequest {
   text: string;
   socket_id: string;
@@ -25,7 +33,11 @@ class CreateMessageService {
     private chatRepository: IChatsRepositories,
   ) {}
 
-  async execute({ text, socket_id, toId }: IRequest): Promise<Message> {
+  async execute({
+    text,
+    socket_id,
+    toId,
+  }: IRequest): Promise<MessagesWithRelations> {
     const user = await this.usersRepository.findBySocketId(socket_id);
 
     if (!user) {
@@ -44,7 +56,7 @@ class CreateMessageService {
       toId,
     });
 
-    return message;
+    return message as MessagesWithRelations;
   }
 }
 

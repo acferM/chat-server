@@ -38,6 +38,16 @@ io.on('connect', socket => {
       text,
     });
 
+    const notifiedUsers = message.to.participants.filter(
+      participant => participant.socket_id !== socket.id,
+    );
+
+    const notifiedUsersIds = notifiedUsers.map(
+      participant => participant.socket_id,
+    );
+
     io.to(chat_id).emit('message', message);
+
+    io.to(notifiedUsersIds).emit('notification', message);
   });
 });
