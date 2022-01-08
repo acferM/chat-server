@@ -1,4 +1,4 @@
-import { CreateUserService } from 'src/modules/users/services/CreateUser';
+import { CreateUserService } from '@modules/users/services/CreateUser';
 import { container } from 'tsyringe';
 
 import { io } from '../http';
