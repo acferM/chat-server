@@ -6,7 +6,7 @@ import { inject, injectable } from 'tsyringe';
 @injectable()
 class MessagesRepository implements IMessagesRepository {
   constructor(
-    @inject('PrismaClient')
+    @inject('PrismaClientMessages')
     private prisma: Prisma.MessageDelegate<
       Prisma.RejectOnNotFound | Prisma.RejectPerOperation
     >,

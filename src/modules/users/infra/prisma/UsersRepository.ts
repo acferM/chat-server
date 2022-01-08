@@ -7,7 +7,7 @@ import { inject, injectable } from 'tsyringe';
 @injectable()
 class UsersRepository implements IUsersRepository {
   constructor(
-    @inject('PrismaClient')
+    @inject('PrismaClientUsers')
     private prisma: Prisma.UserDelegate<
       Prisma.RejectOnNotFound | Prisma.RejectPerOperation
     >,
