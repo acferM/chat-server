@@ -1,10 +1,17 @@
 import { ICreateUserDTO } from '@modules/users/dtos/ICreateUserDTO';
 import { IUpdateUserSocketIdDTO } from '@modules/users/dtos/updateUserSocketIdDTO';
 import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
-import { PrismaClient, User } from '@prisma/client';
+import { Prisma, User } from '@prisma/client';
+import { inject, injectable } from 'tsyringe';
 
+@injectable()
 class UsersRepository implements IUsersRepository {
-  private prisma = new PrismaClient().user;
+  constructor(
+    @inject('PrismaClient')
+    private prisma: Prisma.UserDelegate<
+      Prisma.RejectOnNotFound | Prisma.RejectPerOperation
+    >,
+  ) {}
 
   async findBySocketId(socketId: string): Promise<User | undefined> {
     const user = await this.prisma.findUnique({
