@@ -1,13 +1,20 @@
+import { FakeRequestProvider } from '@shared/container/providers/RequestProvider/fakes/FakeRequestProvider';
+
 import { GetUsersByEmailsService } from '.';
 import { FakeUsersRepository } from '../../repositories/fakes/FakeUsersRepository';
 
 let fakeUsersRepository: FakeUsersRepository;
+let fakeRequestProvider: FakeRequestProvider;
 let getUsersByEmails: GetUsersByEmailsService;
 
 describe('Get Users by Emails Service', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
-    getUsersByEmails = new GetUsersByEmailsService(fakeUsersRepository);
+    fakeRequestProvider = new FakeRequestProvider();
+    getUsersByEmails = new GetUsersByEmailsService(
+      fakeUsersRepository,
+      fakeRequestProvider,
+    );
   });
 
   it('should be able to get users by emails', async () => {
@@ -25,10 +32,9 @@ describe('Get Users by Emails Service', () => {
       socket_id: 'fake_socket_id_2',
     });
 
-    const users = await getUsersByEmails.execute([
-      'john@doe.com',
-      'john2@doe.com',
-    ]);
+    const users = await getUsersByEmails.execute(
+      '[{"email": "john@doe.com"},{"email": "john2@doe.com"}]',
+    );
 
     expect(users).toHaveLength(2);
   });
@@ -48,7 +54,7 @@ describe('Get Users by Emails Service', () => {
       socket_id: 'fake_socket_id_2',
     });
 
-    const users = await getUsersByEmails.execute(['john@doe.com']);
+    const users = await getUsersByEmails.execute('[{"email": "john@doe.com"}]');
 
     expect(users).toHaveLength(1);
   });
