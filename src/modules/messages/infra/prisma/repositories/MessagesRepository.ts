@@ -34,6 +34,26 @@ class MessagesRepository implements IMessagesRepository {
 
     return message;
   }
+
+  async find15ByChatId({
+    chat_id,
+    page = 1,
+  }: IFind15ByChatIdDTO): Promise<Message[]> {
+    const start = (page - 1) * 15;
+
+    const messages = await this.prisma.findMany({
+      where: {
+        chatId: chat_id,
+      },
+      take: 15,
+      skip: start,
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+
+    return messages;
+  }
 }
 
 export { MessagesRepository };

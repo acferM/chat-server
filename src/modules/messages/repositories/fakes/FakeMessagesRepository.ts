@@ -21,6 +21,20 @@ class FakeMessagesRepository implements IMessagesRepository {
 
     return message;
   }
+
+  async find15ByChatId({
+    chat_id,
+    page = 1,
+  }: IFind15ByChatIdDTO): Promise<Message[]> {
+    const start = (page - 1) * 15;
+    const end = page * 15;
+
+    const messages = this.messages.filter(
+      message => message.chatId === chat_id,
+    );
+
+    return messages.slice(start, end);
+  }
 }
 
 export { FakeMessagesRepository };
