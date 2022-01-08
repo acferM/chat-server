@@ -28,4 +28,16 @@ io.on('connect', socket => {
 
     socket.join(chat.id);
   });
+
+  socket.on('message', async ({ chat_id, text }) => {
+    const createMessage = container.resolve(CreateMessageService);
+
+    const message = await createMessage.execute({
+      socket_id: socket.id,
+      toId: chat_id,
+      text,
+    });
+
+    io.to(chat_id).emit('message', message);
+  });
 });
