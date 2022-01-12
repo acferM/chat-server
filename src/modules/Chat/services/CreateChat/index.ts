@@ -17,10 +17,10 @@ interface IRequest {
 @injectable()
 class CreateChatService {
   constructor(
-    @inject('ChatsRepositories')
+    @inject('ChatsRepository')
     private chatsRepository: IChatsRepositories,
 
-    @inject('UsersRepositories')
+    @inject('UsersRepository')
     private usersRepository: IUsersRepository,
 
     @inject('RequestProvider')
