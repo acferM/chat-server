@@ -29,6 +29,11 @@ class MessagesRepository implements IMessagesRepository {
       },
       include: {
         from: true,
+        to: {
+          include: {
+            participants: true,
+          },
+        },
       },
     });
 
@@ -48,7 +53,10 @@ class MessagesRepository implements IMessagesRepository {
       take: 15,
       skip: start,
       orderBy: {
-        createdAt: 'desc',
+        createdAt: 'asc',
+      },
+      include: {
+        from: true,
       },
     });
 

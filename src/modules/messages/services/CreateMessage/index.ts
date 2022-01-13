@@ -29,7 +29,7 @@ class CreateMessageService {
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
 
-    @inject('ChatRepository')
+    @inject('ChatsRepository')
     private chatRepository: IChatsRepositories,
   ) {}
 
