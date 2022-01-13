@@ -53,7 +53,7 @@ class MessagesRepository implements IMessagesRepository {
       take: 15,
       skip: start,
       orderBy: {
-        createdAt: 'asc',
+        createdAt: 'desc',
       },
       include: {
         from: true,
