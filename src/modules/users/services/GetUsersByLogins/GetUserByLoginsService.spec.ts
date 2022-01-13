@@ -7,7 +7,7 @@ let fakeUsersRepository: FakeUsersRepository;
 let fakeRequestProvider: FakeRequestProvider;
 let getUsersByEmails: GetUsersByEmailsService;
 
-describe('Get Users by Emails Service', () => {
+describe('Get Users by Logins Service', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
     fakeRequestProvider = new FakeRequestProvider();
@@ -17,10 +17,10 @@ describe('Get Users by Emails Service', () => {
     );
   });
 
-  it('should be able to get users by emails', async () => {
+  it('should be able to get users by logins', async () => {
     fakeUsersRepository.create({
       name: 'John Doe',
-      login: 'fake login',
+      login: 'fake login1',
       email: 'john@doe.com',
       avatar_url: 'fake_avatar',
       socket_id: 'fake_socket_id',
@@ -28,23 +28,23 @@ describe('Get Users by Emails Service', () => {
 
     fakeUsersRepository.create({
       name: 'John Doe 2',
-      login: 'fake login',
+      login: 'fake login2',
       email: 'john2@doe.com',
       avatar_url: 'fake_avatar',
       socket_id: 'fake_socket_id_2',
     });
 
     const users = await getUsersByEmails.execute(
-      '[{"email": "john@doe.com"},{"email": "john2@doe.com"}]',
+      '[{"login": "fake login1"},{"login": "fake login2"}]',
     );
 
     expect(users).toHaveLength(2);
   });
 
-  it('should not to get users without email specified', async () => {
+  it('should not to get users without login specified', async () => {
     await fakeUsersRepository.create({
       name: 'John Doe',
-      login: 'fake login',
+      login: 'fake login1',
       email: 'john@doe.com',
       avatar_url: 'fake_avatar',
       socket_id: 'fake_socket_id',
@@ -52,13 +52,13 @@ describe('Get Users by Emails Service', () => {
 
     await fakeUsersRepository.create({
       name: 'John Doe 2',
-      login: 'fake login',
+      login: 'fake login2',
       email: 'john2@doe.com',
       avatar_url: 'fake_avatar',
       socket_id: 'fake_socket_id_2',
     });
 
-    const users = await getUsersByEmails.execute('[{"email": "john@doe.com"}]');
+    const users = await getUsersByEmails.execute('[{"login": "fake login1"}]');
 
     expect(users).toHaveLength(1);
   });

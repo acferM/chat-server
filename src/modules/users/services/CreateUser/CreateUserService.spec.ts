@@ -13,6 +13,7 @@ describe('Create User Service', () => {
   it('Should be able to create a new user', async () => {
     const user = await createUsers.execute({
       name: 'John Doe',
+      login: 'fake login',
       email: 'john@doe.com',
       avatar_url: 'john avatar',
       socket_id: 'socket',
@@ -24,6 +25,7 @@ describe('Create User Service', () => {
   it('Should update user socket_id if user already exists', async () => {
     const oldUser = await createUsers.execute({
       name: 'John Doe',
+      login: 'fake login',
       email: 'john@doe.com',
       avatar_url: 'john avatar',
       socket_id: 'socket',
@@ -31,6 +33,7 @@ describe('Create User Service', () => {
 
     const user = await createUsers.execute({
       name: 'John Doe',
+      login: 'fake login',
       email: 'john@doe.com',
       avatar_url: 'john avatar',
       socket_id: 'new_socket',

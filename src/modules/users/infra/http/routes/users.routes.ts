@@ -1,11 +1,11 @@
 import { Router } from 'express';
 
-import { UsersByEmailController } from '../controllers/UsersByEmailController';
+import { UsersByLoginController } from '../controllers/UsersByLoginController';
 
-const usersByEmailController = new UsersByEmailController();
+const usersByLoginController = new UsersByLoginController();
 
 const usersRouter = Router();
 
-usersRouter.get('/:username', usersByEmailController.index);
+usersRouter.get('/:username', usersByLoginController.index);
 
 export { usersRouter };

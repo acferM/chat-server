@@ -25,7 +25,7 @@ describe('Create Chat Service', () => {
   it('Should be able to create a new chat', async () => {
     await fakeUsersRepository.create({
       name: 'John Doe',
-      login: 'fake login',
+      login: 'fake login1',
       email: 'john@doe.com',
       avatar_url: 'fake_avatar',
       socket_id: 'fake_socket_id',
@@ -33,15 +33,15 @@ describe('Create Chat Service', () => {
 
     await fakeUsersRepository.create({
       name: 'John Doe 2',
-      login: 'fake login',
+      login: 'fake login2',
       email: 'john2@doe.com',
       avatar_url: 'fake_avatar',
       socket_id: 'fake_socket_id_2',
     });
 
-    const chat = await createChat.execute({
-      emailsUrl: '["john@doe.com", "john2@doe.com"]',
-    });
+    const chat = await createChat.execute(
+      '[{"login": "fake login1"},{"login": "fake login2"}]',
+    );
 
     expect(chat).toHaveProperty('id');
   });
@@ -49,7 +49,7 @@ describe('Create Chat Service', () => {
   it('Should not create a new room to same users', async () => {
     await fakeUsersRepository.create({
       name: 'John Doe',
-      login: 'fake login',
+      login: 'fake login1',
       email: 'john@doe.com',
       avatar_url: 'fake_avatar',
       socket_id: 'fake_socket_id',
@@ -57,19 +57,19 @@ describe('Create Chat Service', () => {
 
     await fakeUsersRepository.create({
       name: 'John Doe 2',
-      login: 'fake login',
+      login: 'fake login2',
       email: 'john2@doe.com',
       avatar_url: 'fake_avatar',
       socket_id: 'fake_socket_id_2',
     });
 
-    const firstChat = await createChat.execute({
-      emailsUrl: '["john@doe.com", "john2@doe.com"]',
-    });
+    const firstChat = await createChat.execute(
+      '[{"login": "fake login1"},{"login": "fake login2"}]',
+    );
 
-    const secondChat = await createChat.execute({
-      emailsUrl: '["john@doe.com", "john2@doe.com"]',
-    });
+    const secondChat = await createChat.execute(
+      '[{"login": "fake login1"},{"login": "fake login2"}]',
+    );
 
     expect(firstChat.id).toEqual(secondChat.id);
   });

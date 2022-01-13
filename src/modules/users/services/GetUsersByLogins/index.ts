@@ -9,7 +9,7 @@ type GitUser = {
 };
 
 @injectable()
-class GetUsersByEmailsService {
+class GetUsersByLoginsService {
   constructor(
     @inject('UsersRepository')
     private usersRepository: IUsersRepository,
@@ -23,8 +23,6 @@ class GetUsersByEmailsService {
       usersUrl,
     );
 
-    console.log(gitUsers);
-
     const logins = gitUsers.map(user => user.login);
 
     const users = await this.usersRepository.findManyByLogins(logins);
@@ -33,4 +31,4 @@ class GetUsersByEmailsService {
   }
 }
 
-export { GetUsersByEmailsService };
+export { GetUsersByLoginsService };

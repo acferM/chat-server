@@ -1,14 +1,14 @@
-import { GetUsersByEmailsService } from '@modules/users/services/GetUsersByEmails';
+import { GetUsersByLoginsService } from '@modules/users/services/GetUsersByLogins';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-class UsersByEmailController {
+class UsersByLoginController {
   async index(request: Request, response: Response): Promise<Response> {
     const { username } = request.params;
 
-    const getUsersByEmail = container.resolve(GetUsersByEmailsService);
+    const getUsersByLogins = container.resolve(GetUsersByLoginsService);
 
-    const users = await getUsersByEmail.execute(
+    const users = await getUsersByLogins.execute(
       `https://api.github.com/users/${username}/following`,
     );
 
@@ -16,4 +16,4 @@ class UsersByEmailController {
   }
 }
 
-export { UsersByEmailController };
+export { UsersByLoginController };
