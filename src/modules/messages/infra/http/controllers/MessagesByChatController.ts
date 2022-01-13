@@ -11,7 +11,7 @@ class MessagesByChatController {
 
     const messages = await get15Messages.execute({
       chat_id,
-      page: Number(page),
+      page: page && Number(page),
     });
 
     return response.json(messages);
