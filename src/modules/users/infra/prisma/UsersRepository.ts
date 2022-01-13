@@ -23,6 +23,16 @@ class UsersRepository implements IUsersRepository {
     return user;
   }
 
+  async findByLogin(login: string): Promise<User | undefined> {
+    const user = await this.prisma.findUnique({
+      where: {
+        login,
+      },
+    });
+
+    return user;
+  }
+
   async findByEmail(email: string): Promise<User> {
     const user = await this.prisma.findUnique({
       where: {
@@ -33,11 +43,11 @@ class UsersRepository implements IUsersRepository {
     return user;
   }
 
-  async findManyByEmails(emails: string[]): Promise<User[]> {
+  async findManyByLogins(logins: string[]): Promise<User[]> {
     const users = await this.prisma.findMany({
       where: {
-        email: {
-          in: emails,
+        login: {
+          in: logins,
         },
       },
     });
@@ -63,12 +73,13 @@ class UsersRepository implements IUsersRepository {
 
   async create({
     name,
+    login,
     email,
     avatar_url,
     socket_id,
   }: ICreateUserDTO): Promise<User> {
     const user = await this.prisma.create({
-      data: { name, email, avatar_url, socket_id },
+      data: { name, login, email, avatar_url, socket_id },
     });
 
     return user;

@@ -5,7 +5,7 @@ import { IRequestProvider } from '@shared/container/providers/RequestProvider/mo
 import { IUsersRepository } from '../../repositories/IUsersRepository';
 
 type GitUser = {
-  email: string;
+  login: string;
 };
 
 @injectable()
@@ -18,16 +18,16 @@ class GetUsersByEmailsService {
     private requestProvider: IRequestProvider,
   ) {}
 
-  async execute(emailsUrl: string) {
+  async execute(usersUrl: string) {
     const { data: gitUsers } = await this.requestProvider.get<GitUser[]>(
-      emailsUrl,
+      usersUrl,
     );
 
     console.log(gitUsers);
 
-    const emails = gitUsers.map(user => user.email);
+    const logins = gitUsers.map(user => user.login);
 
-    const users = await this.usersRepository.findManyByEmails(emails);
+    const users = await this.usersRepository.findManyByLogins(logins);
 
     return users;
   }

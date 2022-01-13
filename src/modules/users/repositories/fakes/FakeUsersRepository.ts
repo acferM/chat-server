@@ -20,8 +20,8 @@ class FakeUsersRepository implements IUsersRepository {
     return user;
   }
 
-  public async findManyByEmails(emails: string[]): Promise<User[]> {
-    const users = this.users.filter(user => emails.includes(user.email));
+  public async findManyByLogins(logins: string[]): Promise<User[]> {
+    const users = this.users.filter(user => logins.includes(user.login));
 
     return users;
   }

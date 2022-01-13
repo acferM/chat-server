@@ -6,13 +6,9 @@ import { IRequestProvider } from '@shared/container/providers/RequestProvider/mo
 
 import { IChatsRepositories } from '../../repositories/IChatsRepositories';
 
-type GitResponse = {
-  email: string;
+type GitUser = {
+  login: string;
 };
-
-interface IRequest {
-  emailsUrl: string;
-}
 
 @injectable()
 class CreateChatService {
@@ -27,14 +23,14 @@ class CreateChatService {
     private requestProvider: IRequestProvider,
   ) {}
 
-  async execute({ emailsUrl }: IRequest): Promise<Chat> {
-    const { data: gitUsers } = await this.requestProvider.get<GitResponse[]>(
-      emailsUrl,
+  async execute(usersUrl: string): Promise<Chat> {
+    const { data: gitUsers } = await this.requestProvider.get<GitUser[]>(
+      usersUrl,
     );
 
-    const usersEmails = gitUsers.map(gitUser => gitUser.email);
+    const usersLogins = gitUsers.map(gitUser => gitUser.login);
 
-    const users = await this.usersRepository.findManyByEmails(usersEmails);
+    const users = await this.usersRepository.findManyByLogins(usersLogins);
 
     const usersIds = users.map(user => user.id);
 
