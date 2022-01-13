@@ -1,17 +1,17 @@
 import { FakeRequestProvider } from '@shared/container/providers/RequestProvider/fakes/FakeRequestProvider';
 
-import { GetUsersByEmailsService } from '.';
+import { GetUsersByLoginsService } from '.';
 import { FakeUsersRepository } from '../../repositories/fakes/FakeUsersRepository';
 
 let fakeUsersRepository: FakeUsersRepository;
 let fakeRequestProvider: FakeRequestProvider;
-let getUsersByEmails: GetUsersByEmailsService;
+let getUsersByEmails: GetUsersByLoginsService;
 
 describe('Get Users by Logins Service', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
     fakeRequestProvider = new FakeRequestProvider();
-    getUsersByEmails = new GetUsersByEmailsService(
+    getUsersByEmails = new GetUsersByLoginsService(
       fakeUsersRepository,
       fakeRequestProvider,
     );
