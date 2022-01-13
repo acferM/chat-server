@@ -26,6 +26,7 @@ describe('Create Message Service', () => {
   it('should be able to create a new message', async () => {
     const user = await fakeUsersRepository.create({
       name: 'John Doe',
+      login: 'fake login',
       email: 'John@doe.com',
       avatar_url: 'John.jpg',
       socket_id: 'socket',
@@ -50,6 +51,7 @@ describe('Create Message Service', () => {
         {
           id: 'fake-id',
           name: 'fake name',
+          login: 'fake login',
           email: 'fake@email.com',
           avatar_url: 'fake.jpg',
           socket_id: 'fake-socket',
@@ -71,6 +73,7 @@ describe('Create Message Service', () => {
   it('should not be able to create a new message for inexistent chat', async () => {
     const user = await fakeUsersRepository.create({
       name: 'John Doe',
+      login: 'fake login',
       email: 'John@doe.com',
       avatar_url: 'John.jpg',
       socket_id: 'socket',

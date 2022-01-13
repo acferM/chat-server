@@ -23,6 +23,8 @@ class GetUsersByEmailsService {
       emailsUrl,
     );
 
+    console.log(gitUsers);
+
     const emails = gitUsers.map(user => user.email);
 
     const users = await this.usersRepository.findManyByEmails(emails);

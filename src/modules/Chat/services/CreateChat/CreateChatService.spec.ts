@@ -25,6 +25,7 @@ describe('Create Chat Service', () => {
   it('Should be able to create a new chat', async () => {
     await fakeUsersRepository.create({
       name: 'John Doe',
+      login: 'fake login',
       email: 'john@doe.com',
       avatar_url: 'fake_avatar',
       socket_id: 'fake_socket_id',
@@ -32,6 +33,7 @@ describe('Create Chat Service', () => {
 
     await fakeUsersRepository.create({
       name: 'John Doe 2',
+      login: 'fake login',
       email: 'john2@doe.com',
       avatar_url: 'fake_avatar',
       socket_id: 'fake_socket_id_2',
@@ -47,6 +49,7 @@ describe('Create Chat Service', () => {
   it('Should not create a new room to same users', async () => {
     await fakeUsersRepository.create({
       name: 'John Doe',
+      login: 'fake login',
       email: 'john@doe.com',
       avatar_url: 'fake_avatar',
       socket_id: 'fake_socket_id',
@@ -54,6 +57,7 @@ describe('Create Chat Service', () => {
 
     await fakeUsersRepository.create({
       name: 'John Doe 2',
+      login: 'fake login',
       email: 'john2@doe.com',
       avatar_url: 'fake_avatar',
       socket_id: 'fake_socket_id_2',

@@ -5,6 +5,7 @@ import { IUsersRepository } from '../../repositories/IUsersRepository';
 
 interface IRequest {
   name: string;
+  login: string;
   email: string;
   avatar_url: string;
   socket_id: string;
@@ -19,6 +20,7 @@ class CreateUserService {
 
   async execute({
     name,
+    login,
     email,
     socket_id,
     avatar_url,
@@ -36,6 +38,7 @@ class CreateUserService {
 
     const user = await this.usersRepository.create({
       name,
+      login,
       email,
       socket_id,
       avatar_url,

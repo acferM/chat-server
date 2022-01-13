@@ -20,6 +20,7 @@ describe('Get Users by Emails Service', () => {
   it('should be able to get users by emails', async () => {
     fakeUsersRepository.create({
       name: 'John Doe',
+      login: 'fake login',
       email: 'john@doe.com',
       avatar_url: 'fake_avatar',
       socket_id: 'fake_socket_id',
@@ -27,6 +28,7 @@ describe('Get Users by Emails Service', () => {
 
     fakeUsersRepository.create({
       name: 'John Doe 2',
+      login: 'fake login',
       email: 'john2@doe.com',
       avatar_url: 'fake_avatar',
       socket_id: 'fake_socket_id_2',
@@ -42,6 +44,7 @@ describe('Get Users by Emails Service', () => {
   it('should not to get users without email specified', async () => {
     await fakeUsersRepository.create({
       name: 'John Doe',
+      login: 'fake login',
       email: 'john@doe.com',
       avatar_url: 'fake_avatar',
       socket_id: 'fake_socket_id',
@@ -49,6 +52,7 @@ describe('Get Users by Emails Service', () => {
 
     await fakeUsersRepository.create({
       name: 'John Doe 2',
+      login: 'fake login',
       email: 'john2@doe.com',
       avatar_url: 'fake_avatar',
       socket_id: 'fake_socket_id_2',
