@@ -21,13 +21,15 @@ io.on('connect', socket => {
     });
   });
 
-  socket.on('start_chat', async ({ type, usersUrl, userLogin }) => {
+  socket.on('start_chat', async ({ type, usersUrl, userLogin }, callback) => {
     if (type === 'group') {
       const createChat = container.resolve(CreateChatService);
 
       const chat = await createChat.execute(usersUrl);
 
       socket.join(chat.id);
+
+      callback(chat.id)
     } else {
       const createChatByUserLogin = container.resolve(
         CreateChatByUserLoginService,
@@ -39,6 +41,8 @@ io.on('connect', socket => {
       });
 
       socket.join(chat.id);
+
+      callback(chat.id)
     }
   });
 
