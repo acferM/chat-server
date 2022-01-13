@@ -1,4 +1,5 @@
 import { CreateChatService } from '@modules/Chat/services/CreateChat';
+import { CreateChatByUserLoginService } from '@modules/Chat/services/CreateChatByUserLogin';
 import { CreateMessageService } from '@modules/messages/services/CreateMessage';
 import { CreateUserService } from '@modules/users/services/CreateUser';
 import { container } from 'tsyringe';
@@ -28,7 +29,16 @@ io.on('connect', socket => {
 
       socket.join(chat.id);
     } else {
-      // TODO
+      const createChatByUserLogin = container.resolve(
+        CreateChatByUserLoginService,
+      );
+
+      const chat = await createChatByUserLogin.execute({
+        login: userLogin,
+        socket_id: socket.id,
+      });
+
+      socket.join(chat.id);
     }
   });
 
