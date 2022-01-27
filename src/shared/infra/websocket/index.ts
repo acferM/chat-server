@@ -29,7 +29,7 @@ io.on('connect', socket => {
 
       socket.join(chat.id);
 
-      callback(chat.id)
+      callback(chat.id);
     } else {
       const createChatByUserLogin = container.resolve(
         CreateChatByUserLoginService,
@@ -42,7 +42,7 @@ io.on('connect', socket => {
 
       socket.join(chat.id);
 
-      callback(chat.id)
+      callback(chat.id);
     }
   });
 
